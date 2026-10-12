@@ -4,7 +4,7 @@ address — and body copy are deliberately not recorded here; read the page itse
 
 ## index.html → /
 title: JayaKrishna Arts | Original Paintings, Andhra Pradesh, India
-purpose: Homepage for painter JayaKrishna Bandari — collections, featured works, the artist, cinema, honours and portrait commissions.
+purpose: Homepage for painter JayaKrishna Bandari — collections, gallery, living with art, landscapes and portrait commissions (US-focused).
 sections:
 - `#top` — hero slideshow, "Four decades at the easel."
 - intro — studio statement
@@ -12,11 +12,18 @@ sections:
 - `#gallery` "Works from the studio" — filterable masonry of all 37 works with a lightbox
 - `#living` "Living with art" — horizontal rail of works shown in room and gallery settings
 - `#landscapes` — full-width panorama and two landscapes in room settings
-- `#cinema` "Painted into Indian cinema" — film credits and exhibitions
-- `#honours` "Recognised by the masters" — three honours
-- quotes — rotating distinctions
 - `#portraits` "From your photograph to a finished portrait." — four reference/painting pairs
 - `#commissions` "A portrait, painted for you." — commission steps
+
+## india.html → /india
+title: JayaKrishna in India: Cinema & Honours | JayaKrishna Arts
+purpose: The artist's work and recognition in India, moved off the homepage; linked from the footer ("Work in India").
+sections:
+- intro — "Painted in India, honoured on stage."
+- `#cinema` "Painted into Indian cinema" — six film credits and exhibitions
+- `#honours` "Recognised by the masters" — Balamuralikrishna, S. P. Balasubrahmanyam, Open Studio Hartford
+- quotes — rotating distinctions
+- `#india-works` "Subjects from India" — seven works from the collection, lightbox
 
 ## 404.html → /404
 title: Page not found | JayaKrishna Arts

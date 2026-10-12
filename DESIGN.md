@@ -51,12 +51,13 @@ sections:
   - id: living — "Living with art": horizontal snap rail of the room / gallery mockups, lightbox.
   - id: landscapes — full-bleed panorama (uncropped 2:1) + two in-room landscapes on ink.
   - id: artist — arched photo with terracotta tag, name, bio, 40+ / 6,000+ / 1,500+ stats.
-  - id: cinema — navy band: six film credits (2003–2012) and three exhibition photos.
-  - id: honours — Balamuralikrishna, S. P. Balasubrahmanyam, Open Studio Hartford.
-  - quotes — rotating band of the three real distinctions (no testimonials until real ones exist).
   - id: portraits — "From your photograph to a finished portrait": the four reference/painting pairs, 2x2 on sand, lightbox.
   - id: commissions — terracotta split: three steps + "Begin a commission" (WhatsApp).
   - footer (id: contact column) — phone +91 90005 00669, WhatsApp, krishnaartstudio@gmail.com.
+
+pages:
+  - index.html — US-focused homepage (no India-specific sections; header nav: Collections, Gallery, Commissions, Contact).
+  - india.html — "Work in India": intro, Indian cinema + exhibitions, honours, quotes band, Subjects from India gallery (same images + lightbox). Linked from the footer Studio column.
 
 avoid:
   - Invented prices, testimonials, quotes in the artist's voice, certificates, or a cart.
