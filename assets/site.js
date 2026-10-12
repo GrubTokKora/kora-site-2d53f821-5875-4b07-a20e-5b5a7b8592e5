@@ -112,6 +112,92 @@
     items.forEach(function (el) { io.observe(el); });
   }
 
+  // Motion layer: hero entrance + typed scroll reveals (see "motion layer" in src/input.css).
+  if (!reduce) {
+    var heroEl = document.querySelector('.hero');
+    if (heroEl) {
+      var first = heroEl.querySelector('.slide img');
+      var ready = function () { heroEl.classList.add('is-ready'); };
+      if (first && !first.complete) {
+        first.addEventListener('load', ready, { once: true });
+        first.addEventListener('error', ready, { once: true });
+        setTimeout(ready, 1600);            // never hold the page back on a slow image
+      } else { requestAnimationFrame(ready); }
+      heroEl.addEventListener('focusin', function () { heroEl.classList.add('is-paused'); });
+      heroEl.addEventListener('focusout', function () { heroEl.classList.remove('is-paused'); });
+    }
+
+    // [selector, type, stagger ms between elements revealed together]
+    var MOTION = [
+      ['.sec-bar', 'rule', 0],
+      ['.col__inner', 'clip', 140],
+      ['.featured__head .label, .featured__head > p, .filters, .featured__cta', 'up', 90],
+      ['.masonry .tile', 'up', 70],
+      ['.living__head .label, .living__side', 'up', 100],
+      ['.rail__item', 'rise', 110],
+      ['.pano__main', 'wipe', 0],
+      ['.pano__item', 'up', 140],
+      ['.ba__head .label, .ba__head p', 'up', 100],
+      ['.ba__frame', 'clip', 140],
+      ['.comm__body .label, .comm__body > p, .comm__body .step, .comm__body .btn-solid', 'up', 90],
+      ['.comm__media', 'zoom', 0],
+      ['.cinema .label, .cinema__p, .exh__head', 'up', 100],
+      ['.honours__head .label', 'up', 0],
+      ['.honor__img', 'clip', 150],
+      ['.quotes__mark, .quotes__nav', 'up', 120],
+      ['.nf > *', 'up', 120],
+      ['.ftr__brand, .ftr__col, .ftr__base', 'up', 90]
+    ];
+    var targets = [];
+    MOTION.forEach(function (m) {
+      document.querySelectorAll(m[0]).forEach(function (el) {
+        if (el.hasAttribute('data-anim')) return;
+        if (m[1] === 'up' && el.hasAttribute('data-r')) return;   // already revealed by data-r
+        el.setAttribute('data-anim', m[1]);
+        el._stagger = m[2];
+        // a fully clipped element never reports as intersecting, so watch its unclipped parent instead
+        el._watch = (m[1] === 'clip' || m[1] === 'wipe' || m[1] === 'rise') ? el.parentElement : el;   // rise: the whole rail enters together
+        el._watch._reveal = (el._watch._reveal || []).concat(el);
+        targets.push(el);
+      });
+    });
+    if ('IntersectionObserver' in window) {
+      var mio = new IntersectionObserver(function (entries) {
+        var n = 0;
+        entries.forEach(function (en) {
+          if (!en.isIntersecting) return;
+          (en.target._reveal || []).forEach(function (el) {
+            el.style.setProperty('--d', Math.min(n, 6) * (el._stagger || 0) + 'ms');
+            if (el._stagger) n++;
+            el.classList.add('is-in');
+          });
+          mio.unobserve(en.target);
+        });
+      }, { threshold: 0, rootMargin: '0px 0px -40px 0px' });
+      targets.forEach(function (el) { mio.observe(el._watch); });
+    } else {
+      targets.forEach(function (el) { el.classList.add('is-in'); });
+    }
+
+    // Gallery filter: tiles that stay/become visible re-enter with a short stagger.
+    document.querySelectorAll('[data-filter], [data-filter-link]').forEach(function (b) {
+      b.addEventListener('click', function () {
+        requestAnimationFrame(function () {
+          var k = 0;
+          document.querySelectorAll('#gallery .tile').forEach(function (t) {
+            t.classList.remove('is-refilter');
+            if (t.hidden) return;
+            void t.offsetWidth;                          // restart the animation
+            t.style.setProperty('--k', Math.min(k++, 12) * 45 + 'ms');
+            t.classList.add('is-refilter');
+          });
+        });
+      });
+    });
+  } else {
+    var h0 = document.querySelector('.hero'); if (h0) h0.classList.add('is-ready');
+  }
+
   // Quote rotator.
   var q = document.querySelector('[data-quotes]');
   if (q) {
