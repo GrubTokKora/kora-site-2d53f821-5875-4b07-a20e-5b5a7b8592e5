@@ -330,9 +330,17 @@
 
   /* footer */
   .ftr { background: var(--ink); color: var(--stone); padding: clamp(60px, 7vw, 100px) var(--pad) 40px; }
-  .ftr__grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 220px), 1fr)); gap: 48px; padding-bottom: 60px;
-               border-bottom: 1px solid rgba(244,238,228,.12); }
-  .ftr__brand { display: flex; flex-direction: column; gap: 20px; grid-column: 1/-1; max-width: 420px; }
+  /* footer layout: phone = stacked; tablet = brand on top + 3 columns; desktop = brand left + 3 columns right */
+  .ftr__grid { display: grid; grid-template-columns: 1fr; gap: 40px; padding-bottom: 60px; border-bottom: 1px solid rgba(244,238,228,.12); }
+  .ftr__brand { display: flex; flex-direction: column; gap: 20px; max-width: 420px; }
+  @media (min-width: 640px) {
+    .ftr__grid { grid-template-columns: repeat(3, minmax(0, 1fr)); column-gap: 32px; }
+    .ftr__brand { grid-column: 1 / -1; }
+  }
+  @media (min-width: 1000px) {
+    .ftr__grid { grid-template-columns: minmax(0, 1.6fr) repeat(3, minmax(0, 1fr)); column-gap: clamp(32px, 4vw, 64px); align-items: start; }
+    .ftr__brand { grid-column: auto; }
+  }
   .ftr__logo { line-height: 0; }
   .ftr__logo img { height: clamp(78px, 8vw, 104px); width: auto; }
   .ftr__brand p { font-family: var(--serif); font-style: italic; font-size: 22px; color: var(--ivory); margin: 0; line-height: 1.4; }
@@ -340,7 +348,7 @@
   .ftr__col a { color: var(--stone); }
   .ftr__col a:hover { color: var(--ivory); }
   .ftr__h { font-size: 11px; letter-spacing: .24em; text-transform: uppercase; color: var(--clay-soft); margin-bottom: 6px; }
-  .ftr__base { display: flex; flex-wrap: wrap; gap: 10px; justify-content: space-between; padding-top: 30px; font-size: 12px; letter-spacing: .06em; }
+  .ftr__base { padding-top: 30px; font-size: 12px; letter-spacing: .06em; }
 
   /* 404 */
   .nf { min-height: 60vh; padding: clamp(80px, 10vw, 150px) var(--pad); display: flex; flex-direction: column; align-items: center; text-align: center; gap: 30px; justify-content: center; }
