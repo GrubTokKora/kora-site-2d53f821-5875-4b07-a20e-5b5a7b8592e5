@@ -9,18 +9,64 @@
     });
   }
 
-  // Mobile menu (below 1000px, as in the design).
+  // Sticky header: compact state with hysteresis (no flicker at the threshold) + reading progress.
+  var hdr = document.querySelector('[data-header]');
+  if (hdr) {
+    var ticking = false;
+    var onScroll = function () {
+      ticking = false;
+      var y = window.scrollY;
+      if (y > 80) hdr.classList.add('is-scrolled');
+      else if (y < 20) hdr.classList.remove('is-scrolled');
+      var max = document.documentElement.scrollHeight - window.innerHeight;
+      hdr.style.setProperty('--progress', max > 0 ? Math.min(1, y / max).toFixed(4) : 0);
+    };
+    window.addEventListener('scroll', function () {
+      if (!ticking) { ticking = true; requestAnimationFrame(onScroll); }
+    }, { passive: true });
+    window.addEventListener('resize', onScroll);
+    onScroll();
+  }
+
+  // Mobile menu (below 1000px): full-screen panel, animated toggle, scroll lock, focus handling.
   var toggle = document.querySelector('[data-menu-toggle]');
   var menu = document.querySelector('[data-menu]');
+  var header = document.querySelector('.hdr');
   if (toggle && menu) {
-    var setOpen = function (open) {
-      menu.classList.toggle('is-open', open);
-      toggle.setAttribute('aria-expanded', String(open));
-      toggle.textContent = open ? 'CLOSE' : 'MENU';
+    var setHeaderHeight = function () {
+      if (header) document.documentElement.style.setProperty('--hdr-h', header.getBoundingClientRect().height + 'px');
     };
-    toggle.addEventListener('click', function () { setOpen(!menu.classList.contains('is-open')); });
-    menu.addEventListener('click', function (e) { if (e.target.closest('a')) setOpen(false); });
-    document.addEventListener('keydown', function (e) { if (e.key === 'Escape') setOpen(false); });
+    var isOpen = function () { return menu.classList.contains('is-open'); };
+    var setOpen = function (open, restoreFocus) {
+      setHeaderHeight();
+      menu.classList.toggle('is-open', open);
+      document.documentElement.classList.toggle('menu-open', open);
+      toggle.setAttribute('aria-expanded', String(open));
+      toggle.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+      if (open) {
+        var first = menu.querySelector('a');
+        if (first) setTimeout(function () { first.focus({ preventScroll: true }); }, 350);
+      } else if (restoreFocus) {
+        toggle.focus({ preventScroll: true });
+      }
+    };
+    toggle.addEventListener('click', function () { setOpen(!isOpen(), true); });
+    menu.addEventListener('click', function (e) { if (e.target.closest('a')) setOpen(false, false); });
+    document.addEventListener('keydown', function (e) {
+      if (!isOpen()) return;
+      if (e.key === 'Escape') { setOpen(false, true); return; }
+      if (e.key === 'Tab') {   // keep focus inside menu + toggle while open
+        var f = [toggle].concat(Array.prototype.slice.call(menu.querySelectorAll('a')));
+        var i = f.indexOf(document.activeElement);
+        if (e.shiftKey && i <= 0) { e.preventDefault(); f[f.length - 1].focus(); }
+        else if (!e.shiftKey && i === f.length - 1) { e.preventDefault(); f[0].focus(); }
+      }
+    });
+    window.addEventListener('resize', function () {
+      setHeaderHeight();
+      if (window.innerWidth >= 1000 && isOpen()) setOpen(false, false);
+    });
+    setHeaderHeight();
   }
 
   // Hero slideshow: 6.5s crossfade with slow zoom, caption + counter + bars.
