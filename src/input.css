@@ -51,13 +51,8 @@
   .hdr__nav a:hover { color: var(--clay); }
   .hdr__nav .hdr__accent { color: var(--clay); }
   .hdr__nav .hdr__accent:hover { color: var(--ink); }
-  .brand { display: flex; flex-direction: column; align-items: center; gap: 6px; color: var(--ink); flex: none; }
-  .brand:hover { color: var(--ink); }
-  .brand__row { display: flex; align-items: center; gap: 12px; }
-  .brand__dia { width: 6px; height: 6px; background: var(--clay); transform: rotate(45deg); }
-  .brand__dia--light { background: var(--clay-soft); }
-  .brand__name { font-family: var(--serif); font-weight: 500; font-size: clamp(18px, 2.2vw, 26px); letter-spacing: .3em; padding-left: .3em; }
-  .brand__sub { font-size: 9px; letter-spacing: .45em; color: var(--muted); padding-left: .45em; }
+  .brand { display: block; flex: none; line-height: 0; }
+  .brand__logo { height: clamp(40px, 4.2vw, 58px); width: auto; }   /* signature logo: JayaKrishna ARTS + brush sweep */
   .menu-btn { background: transparent; border: 1px solid rgba(30,34,51,.3); padding: 12px 18px; font-family: var(--sans);
               font-size: 11px; letter-spacing: .2em; color: var(--ink); cursor: pointer; min-height: 44px; }
   .mnav { display: none; flex-direction: column; padding: 8px var(--pad) 24px; border-bottom: 1px solid rgba(30,34,51,.12);
@@ -329,7 +324,8 @@
   .ftr__grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 220px), 1fr)); gap: 48px; padding-bottom: 60px;
                border-bottom: 1px solid rgba(244,238,228,.12); }
   .ftr__brand { display: flex; flex-direction: column; gap: 20px; grid-column: 1/-1; max-width: 420px; }
-  .ftr__logo { display: flex; align-items: center; gap: 12px; color: var(--ivory); font-family: var(--serif); font-weight: 500; font-size: 24px; letter-spacing: .3em; }
+  .ftr__logo { line-height: 0; }
+  .ftr__logo img { height: clamp(78px, 8vw, 104px); width: auto; }
   .ftr__brand p { font-family: var(--serif); font-style: italic; font-size: 22px; color: var(--ivory); margin: 0; line-height: 1.4; }
   .ftr__col { display: flex; flex-direction: column; gap: 14px; font-size: 14px; scroll-margin-top: 24px; }
   .ftr__col a { color: var(--stone); }

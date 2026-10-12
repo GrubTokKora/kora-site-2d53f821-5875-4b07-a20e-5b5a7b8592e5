@@ -16,7 +16,9 @@ typography:
     - Display: Cormorant Garamond 400 (500 for the wordmark), italics for emphasis words. Hero h1 clamp(52px, 7.2vw, 104px), line-height .95; section h2 clamp(40px, 4.4vw, 64px).
     - Body: Manrope 400 at 14–16px, line-height 1.6–1.8.
     - Labels: Manrope 11–12px, uppercase, letter-spacing .16–.32em.
-    - Wordmark: JAYAKRISHNA in Cormorant 500 at .3em tracking between two 6px terracotta diamonds; sub-line "ARTS · ANDHRA PRADESH".
+    - Logo (PNG, assets/logo/): signature mark — italic "JayaKrishna" (Cormorant 500) over a terracotta dry-brush sweep, "ARTS" in spaced caps.
+      Header uses the one-line lockup logo-horizontal.png; footer logo-reversed.png (ivory + soft clay); favicon is italic "JK" over a brush dab.
+      The logo carries the name only — no location line.
 
 palette:
   primary: "#a8492b"
