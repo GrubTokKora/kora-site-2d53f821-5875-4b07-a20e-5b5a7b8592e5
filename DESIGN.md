@@ -44,12 +44,15 @@ composition:
 sections:
   - id: top (hero) — full-bleed crossfading slideshow (4 slides, 6.5s, slow zoom) with dark gradient, h1 "Four decades at the easel.", caption + slide bars.
   - intro — centred serif statement with ruled label "The Studio of JayaKrishna Bandari".
-  - id: collections — three arched cards: Oil Paintings, Watercolours, Abstracts.
-  - id: featured — eight framed works on sand; each links to a WhatsApp enquiry ("Enquire", no prices).
+  - id: collections — four rectangular category cards (Abstracts 18, Watercolors 12, Portraits 4, Landscapes 3) that filter the gallery.
+  - id: gallery — "Works from the studio": filterable masonry of all 37 works in natural orientation, plain-JS lightbox with caption + enquiry link.
+  - id: living — "Living with art": horizontal snap rail of the room / gallery mockups, lightbox.
+  - id: landscapes — full-bleed panorama (uncropped 2:1) + two in-room landscapes on ink.
   - id: artist — arched photo with terracotta tag, name, bio, 40+ / 6,000+ / 1,500+ stats.
   - id: cinema — navy band: six film credits (2003–2012) and three exhibition photos.
   - id: honours — Balamuralikrishna, S. P. Balasubrahmanyam, Open Studio Hartford.
   - quotes — rotating band of the three real distinctions (no testimonials until real ones exist).
+  - id: portraits — "From your photograph to a finished portrait": the four reference/painting pairs, 2x2 on sand, lightbox.
   - id: commissions — terracotta split: three steps + "Begin a commission" (WhatsApp).
   - footer (id: contact column) — phone +91 90005 00669, WhatsApp, krishnaartstudio@gmail.com.
 
@@ -58,4 +61,5 @@ avoid:
   - Locations other than Andhra Pradesh, India.
   - Links to the old jayakrishnaarts.com pages.
   - Inline layout styles (grids/widths) — layout lives in src/input.css.
+  - Cropping artworks: gallery tiles and frames show each work whole, in its own orientation.
   - SVG or raster formats other than PNG for logos and WebP for site images.

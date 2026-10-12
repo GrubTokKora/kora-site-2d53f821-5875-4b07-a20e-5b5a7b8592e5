@@ -8,12 +8,14 @@ purpose: Homepage for painter JayaKrishna Bandari — collections, featured work
 sections:
 - `#top` — hero slideshow, "Four decades at the easel."
 - intro — studio statement
-- `#collections` "The Collections" — oil paintings, watercolours, abstracts
-- `#featured` "Featured Works" — eight originals with WhatsApp enquiry links
-- `#artist` "JayaKrishna Bandari" — bio and stats
+- `#collections` "The Collections" — four category cards (Abstracts, Watercolors, Portraits, Landscapes); each opens the gallery filtered
+- `#gallery` "Works from the studio" — filterable masonry of all 37 works with a lightbox
+- `#living` "Living with art" — horizontal rail of works shown in room and gallery settings
+- `#landscapes` — full-width panorama and two landscapes in room settings
 - `#cinema` "Painted into Indian cinema" — film credits and exhibitions
 - `#honours` "Recognised by the masters" — three honours
 - quotes — rotating distinctions
+- `#portraits` "From your photograph to a finished portrait." — four reference/painting pairs
 - `#commissions` "A portrait, painted for you." — commission steps
 
 ## 404.html → /404
@@ -23,9 +25,10 @@ purpose: Platform not-found page (noindex) linking back to the homepage.
 ## support files
 Files that are not pages. A line marked [content] holds words or data a visitor reads, so a
 change to the site's content can land there; the rest only make the site work or look right.
-- `assets/site.js` — mobile menu, hero slideshow, scroll reveal, quote rotator
+- `assets/site.js` — mobile menu, hero slideshow, scroll reveal, quote rotator, gallery filters, rail buttons
+- `assets/lightbox.js` — plain-JavaScript lightbox (no library): zoom, pan, swipe, keyboard, captions
 - `src/input.css` — @theme tokens and the component stylesheet (compiled to assets/styles.css at deploy)
-- `assets/img/` — paintings and photos (WebP); `assets/logo/` — wordmark and favicon (PNG)
+- `assets/img/` — paintings and photos (WebP); `assets/img/<category>/` full-size works from issue #432, `thumbs/` 1200px versions for the grids; `assets/logo/` — wordmark and favicon (PNG)
 - `llms.txt` [content] — business summary for AI crawlers
 - `robots.txt`, `sitemap.xml`, `_redirects`, `site.webmanifest`
 
