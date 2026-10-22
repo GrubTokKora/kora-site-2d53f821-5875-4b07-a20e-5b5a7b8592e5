@@ -16,8 +16,9 @@
   --color-clay-soft: #E2A27F;
   --color-sand: #EDE4D6;
 
-  --font-heading: "Cormorant Garamond", Georgia, serif;
-  --font-body: "Manrope", system-ui, sans-serif;
+  --font-heading: var(--kora-font-heading, "Cormorant Garamond"), Georgia, serif;
+  --font-body: var(--kora-font-body, "Manrope"), system-ui, sans-serif;
+  --font-accent: var(--kora-font-accent, var(--font-heading)), var(--font-heading);
 }
 
 @layer base {
